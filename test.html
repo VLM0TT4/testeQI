@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ Test - Question 1 of 35</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .progress-info {
+            text-align: right;
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: #8b5cf6;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #8b5cf6;
+            background: #f3f4f6;
+        }
+
+        .option.selected {
+            border-color: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+        }
+
+        .option-letter {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #8b5cf6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .option.selected .option-letter {
+            background: white;
+            color: #8b5cf6;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #666;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #d1d5db;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .timer {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .timer.warning {
+            color: #f59e0b;
+        }
+
+        .timer.danger {
+            color: #ef4444;
+        }
+
+        .question-type {
+            font-size: 12px;
+            color: #8b5cf6;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .progress-bar {
+                width: 100%;
+            }
+            
+            .question-card {
+                padding: 25px;
+            }
+            
+            .question-text {
+                font-size: 18px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">IQ Test Pro</div>
+            <div class="progress-info">
+                <div class="timer" id="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="timeDisplay">45:00</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div>Question <span id="currentQuestion">1</span> of <span id="totalQuestions">35</span></div>
+            </div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="question-card">
+            <div class="question-type" id="questionType">Verbal Reasoning</div>
+            <div class="question-number">Question <span id="questionNumber">1</span></div>
+            <div class="question-text" id="questionText">
+                Which word does not belong with the others?
+            </div>
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjY2IiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMTgiPkltYWdlIGZvciBxdWVzdGlvbiAxPC90ZXh0Pgo8L3N2Zz4K" alt="Question Image" class="question-image" id="questionImage" style="display: none;">
+            
+            <div class="options" id="options">
+                <div class="option" data-answer="A">
+                    <div class="option-letter">A</div>
+                    <div>Apple</div>
+                </div>
+                <div class="option" data-answer="B">
+                    <div class="option-letter">B</div>
+                    <div>Orange</div>
+                </div>
+                <div class="option" data-answer="C">
+                    <div class="option-letter">C</div>
+                    <div>Car</div>
+                </div>
+                <div class="option" data-answer="D">
+                    <div class="option-letter">D</div>
+                    <div>Banana</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-button btn-secondary" id="prevBtn" disabled>
+                <i class="fas fa-arrow-left"></i>
+                Previous
+            </button>
+            <button class="nav-button btn-primary" id="nextBtn" disabled>
+                Next
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // IQ Test Questions Data
+        const questions = [
+            {
+                type: "Verbal Reasoning",
+                text: "Which word does not belong with the others?",
+                options: ["Apple", "Orange", "Car", "Banana"],
+                correct: "C",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "What comes next in the sequence: 2, 4, 8, 16, ?",
+                options: ["24", "32", "20", "28"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "If you fold a square piece of paper in half twice and cut a small triangle from the corner, how many holes will there be when you unfold it?",
+                options: ["1", "2", "4", "8"],
+                correct: "C",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "A farmer has 17 sheep. All but 9 die. How many sheep are left?",
+                options: ["8", "9", "17", "26"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which word is the opposite of 'Meticulous'?",
+                options: ["Careful", "Sloppy", "Detailed", "Thorough"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "Complete the sequence: A, C, E, G, ?",
+                options: ["H", "I", "J", "K"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "Which shape can be formed by rotating a triangle 180 degrees?",
+                options: ["Circle", "Square", "Triangle", "Rectangle"],
+                correct: "C",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "If 5 machines can make 5 widgets in 5 minutes, how long would it take 100 machines to make 100 widgets?",
+                options: ["5 minutes", "20 minutes", "100 minutes", "500 minutes"],
+                correct: "A",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which word is most similar to 'Eloquent'?",
+                options: ["Quiet", "Articulate", "Loud", "Simple"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "What number should replace the question mark: 1, 4, 9, 16, ?",
+                options: ["20", "25", "24", "30"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "If you're facing north and turn 90 degrees clockwise, then 180 degrees counter-clockwise, which direction are you facing?",
+                options: ["North", "South", "East", "West"],
+                correct: "D",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "What is 15% of 200?",
+                options: ["25", "30", "35", "40"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which pair of words has the same relationship as 'Doctor : Patient'?",
+                options: ["Teacher : Student", "Lawyer : Court", "Chef : Food", "Driver : Car"],
+                correct: "A",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "Complete the pattern: 3, 6, 12, 24, ?",
+                options: ["36", "42", "48", "54"],
+                correct: "C",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "How many cubes are in a 3x3x3 cube?",
+                options: ["9", "27", "18", "36"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "If a train travels 60 mph for 2.5 hours, how far does it go?",
+                options: ["120 miles", "150 miles", "180 miles", "200 miles"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which word means 'to make something better'?",
+                options: ["Worsen", "Improve", "Maintain", "Reduce"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "What comes next: Monday, Wednesday, Friday, ?",
+                options: ["Saturday", "Sunday", "Tuesday", "Thursday"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "If you fold a piece of paper in half 3 times, how many sections will you have?",
+                options: ["6", "8", "12", "16"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "What is the square root of 144?",
+                options: ["11", "12", "13", "14"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which word is an antonym for 'Benevolent'?",
+                options: ["Kind", "Generous", "Malevolent", "Charitable"],
+                correct: "C",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "Complete: 1, 1, 2, 3, 5, 8, ?",
+                options: ["11", "12", "13", "14"],
+                correct: "C",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "Which shape has the most sides?",
+                options: ["Triangle", "Square", "Pentagon", "Hexagon"],
+                correct: "D",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "If x + 5 = 12, what is x?",
+                options: ["6", "7", "8", "9"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which word is a synonym for 'Abundant'?",
+                options: ["Scarce", "Plentiful", "Rare", "Limited"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "What's the missing number: 2, 6, 12, 20, ?",
+                options: ["28", "30", "32", "36"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "How many edges does a cube have?",
+                options: ["8", "12", "16", "20"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "What is 25% of 80?",
+                options: ["15", "20", "25", "30"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which word means 'to give up'?",
+                options: ["Persist", "Surrender", "Continue", "Maintain"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "Complete the sequence: 10, 20, 40, 80, ?",
+                options: ["120", "140", "160", "200"],
+                correct: "C",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "If you're at point A and move 3 steps north, then 2 steps east, then 1 step south, where are you relative to A?",
+                options: ["2 north, 2 east", "2 north, 3 east", "3 north, 2 east", "4 north, 2 east"],
+                correct: "A",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "What is the next prime number after 17?",
+                options: ["18", "19", "20", "21"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Verbal Reasoning",
+                text: "Which word doesn't fit: Happy, Sad, Angry, Blue",
+                options: ["Happy", "Sad", "Angry", "Blue"],
+                correct: "D",
+                image: null
+            },
+            {
+                type: "Pattern Recognition",
+                text: "What comes next: 1, 4, 9, 16, 25, ?",
+                options: ["30", "36", "40", "49"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Spatial Reasoning",
+                text: "How many faces does a pyramid with a square base have?",
+                options: ["4", "5", "6", "8"],
+                correct: "B",
+                image: null
+            },
+            {
+                type: "Mathematical Logic",
+                text: "If 2x + 3 = 11, what is x?",
+                options: ["3", "4", "5", "6"],
+                correct: "B",
+                image: null
+            }
+        ];
+
+        // Test State
+        let currentQuestionIndex = 0;
+        let answers = new Array(questions.length).fill(null);
+        let timeRemaining = 45 * 60; // 45 minutes in seconds
+        let timerInterval;
+
+        // Initialize the test
+        function initTest() {
+            loadQuestion(currentQuestionIndex);
+            startTimer();
+            updateProgress();
+            setupEventListeners();
+        }
+
+        // Load a specific question
+        function loadQuestion(index) {
+            const question = questions[index];
+            
+            document.getElementById('questionType').textContent = question.type;
+            document.getElementById('questionNumber').textContent = index + 1;
+            document.getElementById('questionText').textContent = question.text;
+            document.getElementById('currentQuestion').textContent = index + 1;
+            
+            // Update image if exists
+            const imageEl = document.getElementById('questionImage');
+            if (question.image) {
+                imageEl.src = question.image;
+                imageEl.style.display = 'block';
+            } else {
+                imageEl.style.display = 'none';
+            }
+            
+            // Update options
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'option';
+                optionEl.dataset.answer = String.fromCharCode(65 + i); // A, B, C, D
+                
+                optionEl.innerHTML = `
+                    <div class="option-letter">${String.fromCharCode(65 + i)}</div>
+                    <div>${option}</div>
+                `;
+                
+                optionEl.addEventListener('click', () => selectAnswer(String.fromCharCode(65 + i)));
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            // Restore previous answer if exists
+            if (answers[index] !== null) {
+                selectAnswer(answers[index], false);
+            }
+            
+            updateNavigationButtons();
+        }
+
+        // Select an answer
+        function selectAnswer(answer, updateAnswer = true) {
+            // Remove previous selection
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            document.querySelector(`[data-answer="${answer}"]`).classList.add('selected');
+            
+            if (updateAnswer) {
+                answers[currentQuestionIndex] = answer;
+                updateNavigationButtons();
+            }
+        }
+
+        // Update navigation buttons
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerHTML = '<i class="fas fa-check"></i> Finish Test';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+            }
+            
+            // Enable next button if current question is answered
+            nextBtn.disabled = answers[currentQuestionIndex] === null;
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+                updateProgress();
+            } else {
+                // Test completed
+                finishTest();
+            }
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+                updateProgress();
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        // Start timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    finishTest();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('timeDisplay').textContent = timeString;
+            
+            const timerEl = document.getElementById('timer');
+            if (timeRemaining <= 300) { // 5 minutes
+                timerEl.classList.add('danger');
+            } else if (timeRemaining <= 900) { // 15 minutes
+                timerEl.classList.add('warning');
+            }
+        }
+
+        // Finish test and redirect to payment
+        function finishTest() {
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            answers.forEach((answer, index) => {
+                if (answer === questions[index].correct) {
+                    score++;
+                }
+            });
+            
+            // Store results in sessionStorage
+            sessionStorage.setItem('iqTestResults', JSON.stringify({
+                answers: answers,
+                score: score,
+                totalQuestions: questions.length,
+                percentage: Math.round((score / questions.length) * 100),
+                timeUsed: (45 * 60) - timeRemaining
+            }));
+            
+            // Redirect to payment page
+            window.location.href = 'payment.html';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+            document.getElementById('prevBtn').addEventListener('click', prevQuestion);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' && currentQuestionIndex > 0) {
+                    prevQuestion();
+                } else if (e.key === 'ArrowRight' && answers[currentQuestionIndex] !== null) {
+                    nextQuestion();
+                } else if (e.key >= '1' && e.key <= '4') {
+                    const answer = String.fromCharCode(64 + parseInt(e.key));
+                    selectAnswer(answer);
+                }
+            });
+            
+            // Prevent accidental page refresh
+            window.addEventListener('beforeunload', (e) => {
+                e.preventDefault();
+                e.returnValue = 'Are you sure you want to leave? Your progress will be lost.';
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initTest);
+    </script>
+</body>
+</html>
