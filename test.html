@@ -308,6 +308,13 @@
                 <i class="fas fa-arrow-right"></i>
             </button>
         </div>
+        
+        <!-- Debug Skip Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="skipAllQuestions()" style="background: #ef4444; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                🚀 Skip All (Debug)
+            </button>
+        </div>
     </div>
 
     <script>
@@ -761,6 +768,17 @@
                 e.preventDefault();
                 e.returnValue = 'Are you sure you want to leave? Your progress will be lost.';
             });
+        }
+
+        // Debug function to skip all questions
+        function skipAllQuestions() {
+            // Fill all remaining questions with random answers
+            for (let i = currentQuestionIndex; i < questions.length; i++) {
+                const randomAnswer = String.fromCharCode(65 + Math.floor(Math.random() * 4)); // A, B, C, or D
+                answers[i] = randomAnswer;
+            }
+            // Finish the test
+            finishTest();
         }
 
         // Initialize when page loads
