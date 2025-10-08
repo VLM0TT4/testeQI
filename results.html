@@ -745,6 +745,14 @@
                 return;
             }
             
+            // Check if payment was successful
+            const paymentSuccess = sessionStorage.getItem('paymentSuccess');
+            if (!paymentSuccess) {
+                // If payment not confirmed, redirect to payment
+                window.location.href = 'payment.html';
+                return;
+            }
+            
             const iqScore = calculateIQScore(testResults.percentage);
             const percentile = calculatePercentile(testResults.percentage);
             const iqLabel = getIQLabel(iqScore);

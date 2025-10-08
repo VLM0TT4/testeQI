@@ -76,47 +76,6 @@
             line-height: 1.6;
         }
 
-        .test-summary {
-            background: #f8fafc;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            border: 2px solid #e2e8f0;
-        }
-
-        .summary-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .summary-item {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .summary-item h4 {
-            font-size: 32px;
-            font-weight: 700;
-            color: #8b5cf6;
-            margin-bottom: 5px;
-        }
-
-        .summary-item p {
-            color: #666;
-            font-weight: 500;
-        }
 
         .pricing-section {
             text-align: center;
@@ -202,77 +161,6 @@
             text-align: center;
         }
 
-        .payment-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .payment-option {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .payment-option:hover {
-            border-color: #8b5cf6;
-            background: #f3f4f6;
-        }
-
-        .payment-option.selected {
-            border-color: #8b5cf6;
-            background: linear-gradient(135deg, #8b5cf6, #a855f7);
-            color: white;
-        }
-
-        .payment-option i {
-            font-size: 32px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .payment-form {
-            background: #f8fafc;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
 
         .pay-button {
             width: 100%;
@@ -381,17 +269,7 @@
                 padding: 30px 20px;
             }
             
-            .summary-grid {
-                grid-template-columns: 1fr;
-            }
             
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .payment-options {
-                grid-template-columns: 1fr 1fr;
-            }
             
             .security-badges {
                 flex-direction: column;
@@ -417,28 +295,6 @@
                     <p>You've successfully completed the IQ test! Your detailed intelligence report is ready and waiting for you.</p>
                 </div>
 
-                <!-- Test Summary -->
-                <div class="test-summary">
-                    <div class="summary-title">Your Test Summary</div>
-                    <div class="summary-grid">
-                        <div class="summary-item">
-                            <h4 id="totalQuestions">35</h4>
-                            <p>Questions Answered</p>
-                        </div>
-                        <div class="summary-item">
-                            <h4 id="correctAnswers">0</h4>
-                            <p>Correct Answers</p>
-                        </div>
-                        <div class="summary-item">
-                            <h4 id="percentage">0%</h4>
-                            <p>Accuracy</p>
-                        </div>
-                        <div class="summary-item">
-                            <h4 id="timeUsed">0m</h4>
-                            <p>Time Used</p>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Pricing -->
                 <div class="pricing-section">
@@ -459,49 +315,13 @@
                     </div>
                 </div>
 
-                <!-- Payment Methods -->
+                <!-- Payment Section -->
                 <div class="payment-methods">
-                    <h3>Choose Payment Method</h3>
-                    <div class="payment-options">
-                        <div class="payment-option selected" data-method="card">
-                            <i class="fas fa-credit-card"></i>
-                            <div>Credit Card</div>
-                        </div>
-                        <div class="payment-option" data-method="paypal">
-                            <i class="fab fa-paypal"></i>
-                            <div>PayPal</div>
-                        </div>
-                    </div>
-
-                    <!-- Payment Form -->
-                    <div class="payment-form" id="paymentForm">
-                        <div class="form-group">
-                            <label for="cardNumber">Card Number</label>
-                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="expiryDate">Expiry Date</label>
-                                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
-                            </div>
-                            <div class="form-group">
-                                <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" placeholder="123" maxlength="4">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="cardName">Cardholder Name</label>
-                            <input type="text" id="cardName" placeholder="John Doe">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="john@example.com">
-                        </div>
-                    </div>
-
+                    <h3>Ready to Unlock Your Results?</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                        Click the button below to securely complete your purchase and access your detailed IQ analysis.
+                    </p>
+                    
                     <button class="pay-button" id="payButton">
                         <i class="fas fa-lock"></i>
                         Pay $9.99 & Unlock Results
@@ -510,7 +330,7 @@
                     <!-- Loading State -->
                     <div class="loading" id="loading">
                         <div class="spinner"></div>
-                        <p>Processing your payment...</p>
+                        <p>Redirecting to secure checkout...</p>
                     </div>
                 </div>
 
@@ -541,99 +361,25 @@
     </div>
 
     <script>
-        // Get test results from sessionStorage
-        const testResults = JSON.parse(sessionStorage.getItem('iqTestResults') || '{}');
-        
-        // Update summary with actual results
-        if (testResults.totalQuestions) {
-            document.getElementById('totalQuestions').textContent = testResults.totalQuestions;
-            document.getElementById('correctAnswers').textContent = testResults.score;
-            document.getElementById('percentage').textContent = testResults.percentage + '%';
-            
-            const minutes = Math.floor(testResults.timeUsed / 60);
-            document.getElementById('timeUsed').textContent = minutes + 'm';
-        }
-
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                
-                // Show/hide payment form based on selection
-                const method = option.dataset.method;
-                const form = document.getElementById('paymentForm');
-                
-                if (method === 'card') {
-                    form.style.display = 'block';
-                } else {
-                    form.style.display = 'none';
-                }
-            });
-        });
-
-        // Card number formatting
-        document.getElementById('cardNumber').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
-            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-            if (formattedValue.length > 19) {
-                formattedValue = formattedValue.substring(0, 19);
-            }
-            e.target.value = formattedValue;
-        });
-
-        // Expiry date formatting
-        document.getElementById('expiryDate').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            }
-            e.target.value = value;
-        });
-
-        // CVV formatting
-        document.getElementById('cvv').addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-        });
 
         // Payment processing
         document.getElementById('payButton').addEventListener('click', function() {
-            const selectedMethod = document.querySelector('.payment-option.selected').dataset.method;
-            
-            if (selectedMethod === 'card') {
-                // Validate card form
-                const cardNumber = document.getElementById('cardNumber').value;
-                const expiryDate = document.getElementById('expiryDate').value;
-                const cvv = document.getElementById('cvv').value;
-                const cardName = document.getElementById('cardName').value;
-                const email = document.getElementById('email').value;
-                
-                if (!cardNumber || !expiryDate || !cvv || !cardName || !email) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-                
-                if (cardNumber.replace(/\s/g, '').length < 16) {
-                    alert('Please enter a valid card number.');
-                    return;
-                }
-                
-                if (!email.includes('@')) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-            }
-            
             // Show loading state
             document.getElementById('payButton').style.display = 'none';
             document.getElementById('loading').style.display = 'block';
             
-            // Simulate payment processing
-            setTimeout(() => {
-                // Redirect to results page
-                window.location.href = 'results.html';
-            }, 3000);
+            // Redirect to Kiwify checkout
+            redirectToKiwify();
         });
+        
+        // Function to redirect to Kiwify
+        function redirectToKiwify() {
+            // Your Kiwify checkout URL
+            const kiwifyUrl = 'https://pay.kiwify.com.br/oc4DE5J';
+            
+            // Redirect to Kiwify
+            window.location.href = kiwifyUrl;
+        }
 
         // Prevent form submission on Enter
         document.addEventListener('keypress', function(e) {
